@@ -1,0 +1,123 @@
+@import './pokedex.css';
+
+.modal-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+
+    display: none;
+}
+
+.modal-container.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.modal-box {
+    width: 100%;
+    max-width: 380px;
+    min-height: 350px;
+    background: #444;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 10px 10px 0 10px;
+}
+
+.btn-close{
+    border: none;
+    border-radius: 50%;
+}
+
+.btn-close img {
+    width: 20px;
+    transform: rotatey(0.5turn);
+    border: #000;
+}
+
+.identification-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: space-between;
+}
+
+#modal-detail {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.pokemon-detail-frame {
+    background: #F0F2F6;
+    width: 100%;
+    height: 25px;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    overflow: visible;
+    align-items: flex-end;
+    justify-content: center;
+    align-content: flex-start;
+    margin-top: 40px;
+}
+
+.image-detail {
+    background: none;
+    width: 40%;
+    max-width: 300px;
+    height: 20vh;
+}
+
+.pokemon-data {
+    background: #F0F2F6;
+    border-radius: 0 0 10px 10px;
+    width: 100%;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 .8rem .8rem .8rem;
+}
+
+.pokemon-attributes {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.pokemon-attributes li{
+    margin-bottom: 10px;
+}
+
+.pokemon-attributes .attribute {
+    color: #AAB3C7;
+}
+
+#detail-number {
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    opacity: unset;
+}
+
+.pokemon-data h3 {
+
+    margin-left: 10px;
+}
+
+
+button :hover{
+    cursor: pointer;
+}
