@@ -51,11 +51,6 @@ loadMoreButton.addEventListener("click", () => {
 
 init();
 
-function handleDetailLinkClick(event) {
-  event.preventDefault();
-  showModal();
-}
-
 const pokelist = document.querySelectorAll(".pokemons");
 
 for (let index = 0; index < pokelist.length; index++) {
