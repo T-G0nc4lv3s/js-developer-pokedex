@@ -86,10 +86,6 @@
     border-radius: 1rem;
 }
 
-.pokemon :hover{
-    cursor: pointer;
-}
-
 .pokemon .number {
     color: #000;
     opacity: .3;
@@ -101,6 +97,10 @@
     text-transform: capitalize;
     color: #fff;
     margin-bottom: .25rem;
+}
+
+.pokemon .name:hover{
+    cursor: pointer;
 }
 
 .pokemon .detail {
