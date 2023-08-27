@@ -86,10 +86,10 @@
     background: #F0F2F6;
     border-radius: 0 0 10px 10px;
     width: 100%;
-    min-height: 300px;
     display: flex;
     flex-direction: column;
     padding: 0 .8rem .8rem .8rem;
+    margin-bottom: 1rem;
 }
 
 .pokemon-attributes {
@@ -114,11 +114,16 @@
 }
 
 .pokemon-data h3 {
-
     margin-left: 10px;
 }
 
+.egg-group{
+    list-style: none;
+    width: fit-content;
+    padding: 0;
+    margin: 0;
+}
 
-button :hover{
-    cursor: pointer;
+.egg-group li{
+    margin: 0;
 }

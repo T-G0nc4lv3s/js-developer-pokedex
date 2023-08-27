@@ -1,4 +1,14 @@
 var entity = null;
+var detail = null;
+
+class Details {
+  habitat;
+  shape;
+  growthRate;
+  eggGroups;
+  captureRate;
+  baseHappiness;
+}
 
 function State() {
   this.container = null;
@@ -22,9 +32,23 @@ function createPokemon(json) {
   pokemon.types = json.types.map((typeSlot) => typeSlot.type.name);
   const [type] = pokemon.types;
   pokemon.type = type;
+  pokemon.weight = json.weight;
 
   return pokemon;
 }
+
+function setModalDetails(json) {
+  console.log(json);
+  detail = new Details();
+  detail.habitat = json.habitat.name;
+  detail.shape = json.shape.name;
+  detail.growthRate = json.growth_rate.name;
+  detail.eggGroups = json.egg_groups.map((group) => group.name);
+  detail.baseHappiness = json.base_happiness;
+  detail.captureRate = json.capture_rate;
+  console.log(detail);
+}
+
 function createModal(pokemon) {
   entity = pokemon;
   document.querySelector(".modal-box").classList.add(entity.type);
@@ -54,22 +78,32 @@ function createModal(pokemon) {
                 <div class="attributes-container">
                     <ul class="pokemon-attributes">
                         <li class="attribute">Species</li>
-                        <li class="value">valor</li>
-                        <li class="attribute">Height</li>
-                        <li class="value">valor</li>
+                        <li class="value">${entity.name}</li>
+                        <li class="attribute">Shape</li>
+                        <li class="value">${detail.shape}</li>
                         <li class="attribute">Weight</li>
-                        <li class="value">valor</li>
+                        <li class="value">${entity.weight}</li>
+                        <li class="attribute">Habitat</li>
+                        <li class="value">${detail.habitat}</li>
+                        <li class="attribute">Base happiness</li>
+                        <li class="value">${detail.baseHappiness}</li>
+                        <li class="attribute">Capture rate</li>
+                        <li class="value">${detail.captureRate}</li>
                     </ul>
                 </div>
                 <h3>Breeding</h3>
                 <div class="attributes-container">
                     <ul class="pokemon-attributes">
-                        <li class="attribute">Gender</li>
-                        <li class="value">valor</li>
+                        <li class="attribute">Growth rate</li>
+                        <li class="value">${detail.growthRate}</li>
                         <li class="attribute">Egg groups</li>
-                        <li class="value">valor</li>
-                        <li class="attribute">Egg cycle</li>
-                        <li class="value">valor</li>
+                        <li class="value">
+                          <ol class="egg-group">
+                          ${detail.eggGroups
+                            .map((group) => `<li class="value">${group}</li>`)
+                            .join("")}
+                          </ol>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -88,6 +122,12 @@ function getAttributes(name) {
     .then((obj) => createModal(obj));
 }
 
+function getDetails(name) {
+  const url = `https://pokeapi.co/api/v2/pokemon-species/${name}`;
+  return fetch(url)
+    .then((response) => response.json())
+    .then((json) => setModalDetails(json));
+}
 function showModal() {
   state.container.classList.add("active");
 }
@@ -106,6 +146,7 @@ function handleDetailLinkClick(event) {
   event.preventDefault();
   if (event.target.className == "open-modal name") {
     let name = event.target.textContent;
+    getDetails(name);
     getAttributes(name);
     showModal();
   }
