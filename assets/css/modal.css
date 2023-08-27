@@ -49,6 +49,10 @@
     border: #000;
 }
 
+.btn-close img:hover{
+    cursor: pointer;
+}
+
 .identification-container{
     display: flex;
     flex-direction: column;

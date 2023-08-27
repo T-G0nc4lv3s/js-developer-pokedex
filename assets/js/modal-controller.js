@@ -13,6 +13,10 @@ class Details {
 function State() {
   this.container = null;
   this.btnClose = null;
+  this.modalBox = null;
+  this.containerBtn = null;
+  this.containerId = null;
+  this.pokemonData = null;
 }
 
 const state = new State();
@@ -20,6 +24,10 @@ const state = new State();
 function init() {
   state.container = document.querySelector("#modal-pokemon-detail");
   state.btnClose = document.querySelector("#detail-close-button");
+  state.modalBox = document.querySelector(".modal-box");
+  state.containerBtn = document.querySelector(".btn-container");
+  state.containerId = document.querySelector(".identification-container");
+  state.pokemonData = document.querySelector(".pokemon-data");
 
   state.btnClose.addEventListener("click", handleBtncloseClick);
 }
@@ -51,9 +59,9 @@ function setModalDetails(json) {
 
 function createModal(pokemon) {
   entity = pokemon;
-  document.querySelector(".modal-box").classList.add(entity.type);
-  document.querySelector(".btn-container").classList.add(entity.type);
-  document.querySelector(".btn-close").classList.add(entity.type);
+  state.modalBox.classList.add(entity.type);
+  state.containerBtn.classList.add(entity.type);
+  state.btnClose.classList.add(entity.type);
 
   const newHtml = `
       <div class="identification-container">
@@ -135,11 +143,11 @@ function showModal() {
 function closeModal() {
   state.container.classList.remove("active");
   document.querySelector(".identification-container").innerHTML = "";
-  document.querySelector(".modal-box").classList.remove(entity.type);
-  document.querySelector(".btn-container").classList.remove(entity.type);
-  document.querySelector(".btn-close").classList.remove(entity.type);
-  document.querySelector(".identification-container").remove();
-  document.querySelector(".pokemon-data").remove();
+  state.modalBox.classList.remove(entity.type);
+  state.containerBtn.classList.remove(entity.type);
+  state.btnClose.classList.remove(entity.type);
+  state.containerId.remove();
+  state.pokemonData.remove();
 }
 
 function handleDetailLinkClick(event) {
